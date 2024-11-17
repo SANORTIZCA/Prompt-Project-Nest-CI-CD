@@ -25,7 +25,7 @@ jobs:
       run: corepack pnpm install
 
     - name: Build project
-      run: nest build # Cambia este comando según tu script de build
+      run: pnpm nest build # Cambia este comando según tu script de build
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
