@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const handlebars = require('handlebars');
+const hbs = require('hbs');
 
 const viewsDir = path.join(__dirname, 'views');
 const distDir = path.join(__dirname, 'dist');
@@ -8,7 +8,7 @@ const distDir = path.join(__dirname, 'dist');
 // Función para convertir un archivo HBS a HTML
 const convertHbsToHtml = (hbsFilePath) => {
   const hbsContent = fs.readFileSync(hbsFilePath, 'utf-8');
-  const template = handlebars.compile(hbsContent);
+  const template = hbs.compile(hbsContent);
   const htmlContent = template({});
   const htmlFileName = path.basename(hbsFilePath, '.hbs') + '.html';
   const htmlFilePath = path.join(distDir, htmlFileName);
