@@ -18,11 +18,14 @@ jobs:
       with:
         node-version: '20.18.0'  # Cambia la versión de Node.js si es necesario
 
+    - name: Enable Corepack
+      run: corepack enable
+
     - name: Install dependencies
-      run: pnpm install
+      run: corepack pnpm install
 
     - name: Build project
-      run: nest build  # Cambia este comando según tu script de build
+      run: nest build # Cambia este comando según tu script de build
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
