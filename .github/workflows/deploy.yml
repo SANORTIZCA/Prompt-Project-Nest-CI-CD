@@ -27,6 +27,9 @@ jobs:
     - name: Build project
       run: pnpm build  # Cambia este comando según tu script de build
 
+    - name: Convert HBS to HTML
+      run: node convert-hbs-to-html.js
+
     - name: Create .nojekyll file
       run: echo "" > ./dist/.nojekyll
 
