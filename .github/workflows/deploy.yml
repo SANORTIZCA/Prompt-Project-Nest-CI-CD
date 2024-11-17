@@ -25,7 +25,10 @@ jobs:
       run: corepack pnpm install
 
     - name: Build project
-      run: pnpm nest build # Cambia este comando según tu script de build
+      run: corepack pnpm run build  # Cambia este comando según tu script de build
+
+    - name: Create .nojekyll file
+      run: echo "" > ./dist/.nojekyll
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
