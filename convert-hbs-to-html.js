@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const handlebars = require('handlebars');
+const hbs = require('hbs');
 
 // Ruta al archivo home.hbs
 const hbsFilePath = path.join(__dirname, 'views', 'home.hbs');
@@ -10,7 +10,7 @@ const htmlFilePath = path.join(__dirname, 'dist', 'index.html');
 // Leer el archivo home.hbs
 const hbsContent = fs.readFileSync(hbsFilePath, 'utf-8');
 // Compilar el contenido de Handlebars
-const template = handlebars.compile(hbsContent);
+const template = hbs.handlebars.compile(hbsContent);
 // Generar el contenido HTML
 const htmlContent = template({});
 
