@@ -6,22 +6,25 @@ const viewsDir = path.join(__dirname, 'views');
 const distDir = path.join(__dirname, 'dist');
 
 // Función para convertir un archivo HBS a HTML
-const convertHbsToHtml = (hbsFilePath) => {
+const convertHbsToHtml = (hbsFilePath, outputFileName) => {
   const hbsContent = fs.readFileSync(hbsFilePath, 'utf-8');
   const template = hbs.compile(hbsContent);
   const htmlContent = template({});
-  const htmlFileName = path.basename(hbsFilePath, '.hbs') + '.html';
-  const htmlFilePath = path.join(distDir, htmlFileName);
+  const htmlFilePath = path.join(distDir, outputFileName);
   fs.writeFileSync(htmlFilePath, htmlContent);
   console.log(`${hbsFilePath} convertido a ${htmlFilePath}`);
 };
 
-// Leer todos los archivos HBS en el directorio de vistas
-fs.readdirSync(viewsDir).forEach((file) => {
-  if (path.extname(file) === '.hbs') {
-    const hbsFilePath = path.join(viewsDir, file);
-    convertHbsToHtml(hbsFilePath);
-  }
-});
+// Crear el directorio dist si no existe
+if (!fs.existsSync(distDir)) {
+  fs.mkdirSync(distDir);
+}
+
+// Convertir home.hbs a home.html
+const homeHbsPath = path.join(viewsDir, 'home.hbs');
+convertHbsToHtml(homeHbsPath, 'home.html');
+
+// Convertir home.hbs a index.html para la raíz del sitio
+convertHbsToHtml(homeHbsPath, 'index.html');
 
 console.log('Todas las vistas han sido convertidas a HTML');
